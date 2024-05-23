@@ -1,4 +1,4 @@
-package selenium.ecommercem24.base;
+package ec24.base;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -10,6 +10,7 @@ public class BaseClass {
 
     public static WebDriver init() {
         driver = new ChromeDriver();
+        driver.manage().deleteAllCookies();
         driver.manage().window().maximize();
         driver.get(url);
         return driver;
