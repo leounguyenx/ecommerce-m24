@@ -30,6 +30,7 @@ public class ForgetPasswordTest {
 
         hp = new HomePage(driver);
         fpp = new ForgetPasswordPage(driver);
+        mm = new MessageManager(driver);
     }
 
     @Test

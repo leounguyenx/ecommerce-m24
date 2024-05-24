@@ -6,14 +6,10 @@ import ec24.pages.Login.LoginPage;
 import ec24.pages.Login.LogoutPage;
 import ec24.pages.manager.WaitManager;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-
 import java.time.Duration;
 
 public class LogoutTest {
@@ -46,7 +42,6 @@ public class LogoutTest {
         lop.clickLogout();
         Thread.sleep(Duration.ofSeconds(2));
         Assert.assertTrue(lp.loginOptionIsDisplayed());
-
     }
 
     @AfterTest
