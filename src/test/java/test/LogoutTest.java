@@ -24,7 +24,7 @@ public class LogoutTest {
 
     @BeforeTest
     public void setUp() {
-        driver = BaseClass.init();
+        driver = BaseClass.headlessInit();
         wm = new WaitManager(driver);
         wm.setImplicitWait(10);
 

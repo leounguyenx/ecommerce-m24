@@ -16,6 +16,7 @@ import static org.junit.Assert.assertTrue;
 
 public class LoginTest {
     WebDriver driver;
+
     LoginPage lp;
     HomePage hp;
     LogoutPage lop;
@@ -27,7 +28,7 @@ public class LoginTest {
 
     @BeforeTest
     public void setUp() {
-        driver = BaseClass.init();
+        driver = BaseClass.headlessInit();
         wm = new WaitManager(driver);
         wm.setImplicitWait(10);
 
