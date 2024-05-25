@@ -4,7 +4,7 @@ import ec24.base.BaseClass;
 import ec24.pages.HomePage;
 import ec24.pages.Login.LoginPage;
 import ec24.pages.Login.LogoutPage;
-import ec24.pages.manager.WaitManager;
+import ec24.pages.Manager.WaitManager;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;

@@ -17,15 +17,14 @@ public class HomePage {
     @FindBy(xpath = "//a[text()='Register']")
     private WebElement registerOption;
 
-//    public LoginPage goToLoginPage() {
-//        myAccountDropdown.click();
-//        loginOption.click();
-//        return new LoginPage(driver);
-//    }
-
     public void goToLoginPage() {
         myAccountDropdown.click();
         loginOption.click();
+    }
+
+    public void goToRegisterPage() {
+        myAccountDropdown.click();
+        registerOption.click();
     }
 
     public HomePage (WebDriver driver) {
