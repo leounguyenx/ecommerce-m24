@@ -1,4 +1,4 @@
-package ec24.pages.manager;
+package ec24.pages.Manager;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
