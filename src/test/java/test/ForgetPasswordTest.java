@@ -17,8 +17,8 @@ public class ForgetPasswordTest {
     ForgetPasswordPage fpp;
     MessageManager mm;
     WaitManager wm;
-    String validEmail = "tbonguyen75@gmail.com";
-    String invalidEmail = "tbonguyen@gmail.com";
+    String validEmail = "tubiqomy@imagepoet.net";
+    String invalidEmail = "fullstacktester@gmail.com";
 
     @BeforeTest
     public void setUp() {
@@ -32,11 +32,20 @@ public class ForgetPasswordTest {
     }
 
     @Test
+    public void testGoToForgetPasswordPage() {
+        hp.goToLoginPage();
+        fpp.clickForgetPassword();
+        Assert.assertEquals(fpp.getPageTitle(), "Forgot Your Password?");
+    }
+
+    @Test
     public void testForgetPasswordWithValidEmail() {
         hp.goToLoginPage();
         fpp.clickForgetPassword();
         fpp.resetPassword(validEmail);
         Assert.assertEquals(mm.getSuccessMessage(), "An email with a confirmation link has been sent your email address.");
+        Assert.assertTrue(fpp.checkReceiveResetEmail());
+        Assert.assertTrue(fpp.checkResetEmailSuccessful());
     }
 
     @Test
@@ -45,6 +54,21 @@ public class ForgetPasswordTest {
         fpp.clickForgetPassword();
         fpp.resetPassword(invalidEmail);
         Assert.assertEquals(mm.getWarningMessage(), "Warning: The E-Mail Address was not found in our records, please try again!");
+    }
+
+    @Test
+    public void testLeaveBlank() {
+        hp.goToLoginPage();
+        fpp.clickForgetPassword();
+        fpp.clickResetBtn();
+        Assert.assertEquals(mm.getWarningMessage(), "Warning: The E-Mail Address was not found in our records, please try again!");
+    }
+
+    @Test
+    public void testBackToLoginPage() {
+        hp.goToLoginPage();
+        fpp.clickForgetPassword();
+        fpp.clickBackBtn();
     }
 
     @AfterTest

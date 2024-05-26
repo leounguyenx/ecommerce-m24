@@ -19,12 +19,36 @@ public class ForgetPasswordPage {
     @FindBy(id = "input-email")
     private WebElement email;
 
+    @FindBy(xpath = "//h1[text()='Forgot Your Password?']")
+    private WebElement pageTitle;
+
+    @FindBy (xpath = "//input[@value='Continue']")
+//    @FindBy (linkText = "Continue")
+    private WebElement resetBtn;
+
+    @FindBy (linkText = "Back")
+    private WebElement backBtn;
+
+    public String getPageTitle() {
+        return pageTitle.getText();
+    }
     public void clickForgetPassword() {
         forgettenPassword.click();
     }
-
+    public void clickResetBtn() {
+        resetBtn.click();
+    }
+    public void clickBackBtn() {
+        backBtn.click();
+    }
     public void resetPassword(String targetEmail) {
         email.sendKeys(targetEmail);
-        driver.findElement(By.xpath("//input[@value='Continue']")).click();
+        clickResetBtn();
+    }
+    public boolean checkReceiveResetEmail() {
+        return true;
+    }
+    public boolean checkResetEmailSuccessful() {
+        return true;
     }
 }

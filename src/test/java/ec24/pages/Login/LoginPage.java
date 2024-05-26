@@ -24,8 +24,17 @@ public class LoginPage {
     @FindBy(xpath = "(//a[text()=\"Login\"])[2]")
     private WebElement loginOption;
 
-    public void enterAccount (String user, String pass){
-        email.sendKeys(user);
+    @FindBy (xpath = "//h2[text()='Returning Customer']")
+    private WebElement loginTitle;
+
+    public void enterAccount (String emailAddress, String pass){
+        email.sendKeys(emailAddress);
+        password.sendKeys(pass);
+    }
+    public void enterEmail (String emailAddress){
+        email.sendKeys(emailAddress);
+    }
+    public void enterPassword (String pass){
         password.sendKeys(pass);
     }
 
@@ -35,6 +44,9 @@ public class LoginPage {
 
     public boolean loginOptionIsDisplayed() {
         return loginOption.isDisplayed();
+    }
+    public String getTitlePage(){
+        return loginTitle.getText();
     }
 
     public LoginPage(WebDriver driver){

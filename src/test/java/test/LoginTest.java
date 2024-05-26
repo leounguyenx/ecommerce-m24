@@ -22,7 +22,9 @@ public class LoginTest {
     MessageManager mm;
     WaitManager wm;
 
-    String user;
+    String validEmail;
+    String invalidEmail;
+    String unformatEmail;
     String pass;
 
     @BeforeTest
@@ -36,28 +38,72 @@ public class LoginTest {
         lop = new LogoutPage(driver);
         mm = new MessageManager(driver);
 
+        validEmail = "tbonguyen75@gmail.com";
+        invalidEmail = "fullstacktester@gmail.com";
+        unformatEmail = "email^ *%#-_+";
+        pass = "1234";
+
     }
 
     @Test
-    public void validLogin() {
-        //Valid Credential
-        user = "tbonguyen75@gmail.com";
-        pass = "1234";
-
+    public void testGoToLoginPage(){
         hp.goToLoginPage();
-        lp.enterAccount(user, pass);
+        Assert.assertEquals(lp.getTitlePage(), "Returning Customer");
+    }
+
+    @Test
+    public void testValidLogin() {
+        hp.goToLoginPage();
+        lp.enterAccount(validEmail, pass);
         lp.clickLogin();
         Assert.assertTrue(lop.checkLogoutDisplayed());
     }
 
     @Test
-    public void invalidLogin() {
-        //Invalid Credential
-        user = "tbonguyen75gmail.com";
-        pass = "1234";
-
+    public void testInvalidLogin() {
         hp.goToLoginPage();
-        lp.enterAccount(user, pass);
+        lp.enterAccount(invalidEmail, pass);
+        lp.clickLogin();
+        assertTrue(mm.getWarningMessage().equals("Warning: No match for E-Mail Address and/or Password.")
+                || mm.getWarningMessage().equals("Warning: Your account has exceeded allowed number of login attempts. Please try again in 1 hour."));
+    }
+
+    @Test
+    public void testLeaveAllFieldsBlank() {
+        hp.goToLoginPage();
+        lp.clickLogin();
+        assertTrue(mm.getWarningMessage().equals("Warning: No match for E-Mail Address and/or Password.")
+                || mm.getWarningMessage().equals("Warning: Your account has exceeded allowed number of login attempts. Please try again in 1 hour."));
+    }
+
+    @Test
+    public void testBlankEmail() {
+        hp.goToLoginPage();
+        lp.enterPassword(pass);
+        lp.clickLogin();
+        assertTrue(mm.getWarningMessage().equals("Warning: No match for E-Mail Address and/or Password.")
+                || mm.getWarningMessage().equals("Warning: Your account has exceeded allowed number of login attempts. Please try again in 1 hour."));
+    }
+    @Test
+    public void testBlankPassword() {
+        hp.goToLoginPage();
+        lp.enterEmail(validEmail);
+        lp.clickLogin();
+        assertTrue(mm.getWarningMessage().equals("Warning: No match for E-Mail Address and/or Password.")
+                || mm.getWarningMessage().equals("Warning: Your account has exceeded allowed number of login attempts. Please try again in 1 hour."));
+    }
+    @Test
+    public void testEnterIncorrectEmail() {
+        hp.goToLoginPage();
+        lp.enterAccount(unformatEmail, pass);
+        lp.clickLogin();
+        assertTrue(mm.getWarningMessage().equals("Warning: No match for E-Mail Address and/or Password.")
+                || mm.getWarningMessage().equals("Warning: Your account has exceeded allowed number of login attempts. Please try again in 1 hour."));
+    }
+    @Test
+    public void testEnterIncorrectPassword() {
+        hp.goToLoginPage();
+        lp.enterAccount(validEmail, "0");
         lp.clickLogin();
         assertTrue(mm.getWarningMessage().equals("Warning: No match for E-Mail Address and/or Password.")
                 || mm.getWarningMessage().equals("Warning: Your account has exceeded allowed number of login attempts. Please try again in 1 hour."));
