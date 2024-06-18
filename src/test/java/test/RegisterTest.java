@@ -3,10 +3,9 @@ package test;
 import ec24.base.BaseClass;
 import ec24.pages.HomePage;
 import ec24.pages.Login.LoginPage;
-import ec24.pages.Login.LogoutPage;
-import ec24.pages.Manager.EmailManager;
-import ec24.pages.Manager.MessageManager;
-import ec24.pages.Manager.WaitManager;
+import ec24.managers.EmailManager;
+import ec24.managers.MessageManager;
+import ec24.managers.WaitManager;
 import ec24.pages.RegisterPage;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
@@ -37,7 +36,8 @@ public class RegisterTest {
         mm = new MessageManager(driver);
 
     }
-    @Test
+
+    @Test (priority = 1)
     public void testRegisterSuccessful() {
         hp.goToRegisterPage();
         email = em.fetchRandomEmail();
@@ -47,7 +47,7 @@ public class RegisterTest {
         Assert.assertEquals(rp.getSuccessText(), "Your Account Has Been Created!");
     }
 
-    @Test
+    @Test (priority = 2)
     public void testRegisterWithExistEmail() {
         hp.goToRegisterPage();
         email = "tbonguyen75@gmail.com";
@@ -57,7 +57,8 @@ public class RegisterTest {
         Assert.assertEquals(mm.getWarningMessage(), "Warning: E-Mail Address is already registered!");
     }
 
-    //Enter all fields then click Back => Should show confirm box
+    //Enter one of the fields then click Back => Should show confirm box
+
 
     @AfterMethod
     public void tearDown() {

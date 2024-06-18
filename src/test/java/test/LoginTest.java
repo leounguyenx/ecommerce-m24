@@ -4,8 +4,8 @@ import ec24.base.BaseClass;
 import ec24.pages.HomePage;
 import ec24.pages.Login.LoginPage;
 import ec24.pages.Login.LogoutPage;
-import ec24.pages.Manager.MessageManager;
-import ec24.pages.Manager.WaitManager;
+import ec24.managers.MessageManager;
+import ec24.managers.WaitManager;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
@@ -107,6 +107,10 @@ public class LoginTest {
         lp.clickLogin();
         assertTrue(mm.getWarningMessage().equals("Warning: No match for E-Mail Address and/or Password.")
                 || mm.getWarningMessage().equals("Warning: Your account has exceeded allowed number of login attempts. Please try again in 1 hour."));
+    }
+
+    @Test
+    public void testLoginAfterResetPassword() {
     }
 
     @AfterTest

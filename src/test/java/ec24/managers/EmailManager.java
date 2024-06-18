@@ -1,4 +1,4 @@
-package ec24.pages.Manager;
+package ec24.managers;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -8,9 +8,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class EmailManager {
     WebDriver driver;
@@ -56,5 +53,13 @@ public class EmailManager {
 //        }
 //        return false;
 //    }
+
+    /*
+    * IDEA:
+    * Fetch Random Mail -> Sign-up with fetched mail -> Store email into a db
+    * Functionality:
+    *       + Fetch Random Email (Unregistered email)
+    *       + Use a registered email
+    * */
 
 }
