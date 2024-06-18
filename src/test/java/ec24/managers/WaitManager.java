@@ -1,4 +1,4 @@
-package ec24.pages.Manager;
+package ec24.managers;
 
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
